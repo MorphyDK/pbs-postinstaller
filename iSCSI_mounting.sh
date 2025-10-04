@@ -7,7 +7,7 @@
 # PBS must be running as a VM or bare metal. LXCs are NOT supported.
 # Derek Seaman
 #
-
+clear
 set -euo pipefail
 
 # Check if running as root
