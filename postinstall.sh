@@ -1,5 +1,9 @@
-#!/bin/bash
-# Safe PBS Post-Install Script with iSCSI Setup and Single Reboot
+# !/usr/bin/env bash
+# Version 1.0, 10/4/2025
+# Safe PBS Post-Install Script with iSCSI Setup to Synology ISCSI Lun and Single Reboot
+# https://github.com/MorphyDK/pbs-postinstaller
+# Author MorphyDK
+
 set -e
 
 GREEN="\e[32m"
