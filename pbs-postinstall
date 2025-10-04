@@ -1,0 +1,42 @@
+#!/bin/bash
+# Safe PBS Post-Install Script
+set -e
+
+GREEN="\e[32m"
+RESET="\e[0m"
+
+echo -e ">>> Detecting Debian codename..."
+OS_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2)
+echo -e "Detected codename: ${GREEN}$OS_CODENAME${RESET}"
+
+# --- Remove enterprise repos ---
+read -e -p "$(echo -e "${GREEN}Disable enterprise updates and enable no-subscription repo? (y/N): ${RESET}")" disable_enterprise
+if [[ "$disable_enterprise" =~ ^[Yy]$ ]]; then
+    echo ">>> Removing all PBS enterprise repo files..."
+    for FILE in /etc/apt/sources.list.d/pbs-enterprise*; do
+        [ -f "$FILE" ] && rm -f "$FILE" && echo "Removed: $FILE"
+    done
+
+    echo ">>> Adding PBS no-subscription repo..."
+    cat <<EOF > /etc/apt/sources.list.d/pbs-no-subscription.list
+deb http://download.proxmox.com/debian/pbs $OS_CODENAME pbs-no-subscription
+EOF
+
+    echo ">>> Updating APT repositories..."
+    apt update -y
+else
+    echo ">>> Skipping repo changes."
+fi
+
+# --- Optional upgrade and reboot ---
+read -e -p "$(echo -e "${GREEN}Do you want to auto-upgrade packages and reboot? (y/N): ${RESET}")" do_upgrade
+if [[ "$do_upgrade" =~ ^[Yy]$ ]]; then
+    echo ">>> Upgrading packages..."
+    apt upgrade -y
+    echo ">>> Rebooting server..."
+    reboot
+else
+    echo ">>> Skipping upgrade/reboot."
+fi
+
+echo ">>> PBS post-install script completed safely!"
