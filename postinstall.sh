@@ -1,5 +1,10 @@
 #!/bin/bash
-# Safe PBS Post-Install Script with iSCSI Setup, GitHub Script, and Datastore Creation
+# Safe PBS Post-Install Script with iSCSI Setup so you can backup via iSCSI to your Synology NAS
+# A huge thanks to Derek Seaman for his work:
+# https://www.derekseaman.com/2025/08/how-to-synology-iscsi-lun-for-proxmox-backup-server-datastore.html
+# Version 1.0 10/4-2025
+# Author MorphyDK
+
 set -e
 
 YELLOW="\e[0;33m"
