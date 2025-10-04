@@ -2,6 +2,8 @@
 # Safe PBS Post-Install Script with iSCSI Setup, GitHub Script, and Datastore Creation
 set -e
 
+YELLOW="\e[0;33m"
+RED="\e[0;31m"
 GREEN="\e[32m"
 RESET="\e[0m"
 NEED_REBOOT=0
@@ -17,7 +19,7 @@ OS_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d'=' -f2)
 if [ -z "$OS_CODENAME" ]; then
     OS_CODENAME=$(lsb_release -cs 2>/dev/null || echo "bullseye")
 fi
-echo -e "Detected codename: ${GREEN}$OS_CODENAME${RESET}"
+echo -e "Detected codename: ${YELLOW}$OS_CODENAME${RESET}"
 
 # --- Remove enterprise repos ---
 read -e -p "$(echo -e "${GREEN}Disable enterprise updates and enable no-subscription repo? (y/N): ${RESET}")" disable_enterprise
@@ -89,9 +91,9 @@ echo ">>> GitHub iSCSI mounting script executed successfully!"
 NEED_REBOOT=1  # assume the script might require a reboot
 
 # --- Datastore creation ---
-echo -e "${GREEN}Now that your setup is done, you need to add the datastore to your Proxmox Backup Server.${RESET}"
+echo -e "${YELLOW}Now that your setup is done, you need to add the datastore to your Proxmox Backup Server.${RESET}"
 read -e -p "$(echo -e "${GREEN}Enter the name of the Datastore: ${RESET}")" DATASTORE_NAME
-read -e -p "$(echo -e "${GREEN}Enter the mount point for the Datastore which you entered ealier in the installation: ${RESET}")" DATASTORE_MOUNT
+read -e -p "$(echo -e "${RED}Enter the mount point for the Datastore which you entered ealier in the installation: ${RESET}")" DATASTORE_MOUNT
 
 echo ">>> Creating datastore '${DATASTORE_NAME}' at '${DATASTORE_MOUNT}'..."
 proxmox-backup-manager datastore create "$DATASTORE_NAME" "$DATASTORE_MOUNT"
