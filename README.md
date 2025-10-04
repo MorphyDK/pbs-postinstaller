@@ -7,7 +7,7 @@ After a bit googleling - I stumpled over Derek Seaman:
 
 https://www.derekseaman.com/2025/08/how-to-synology-iscsi-lun-for-proxmox-backup-server-datastore.html
 
-I borrow his scripts and want to try to build everything into a "One Installer to Rule them All" .. :P 
+I borrowed his scripts and want to try to build everything into a "One Installer to Rule them All" .. :P 
 
 So all his hard work - a huge thanks for an alternative way to do backup to your Synology nas, instead of using NFS share to Proxmox Backup Server.
 
@@ -24,8 +24,9 @@ Synology iSCSI LUN Creation
 3: Give the iSCSI target a description a name then click Next. 
 4: Click Next on Create a new LUN.
 5: Enter a LUN name, description, location, and size. Select Thin Provisioning, and check the Space reclamation box. 
-6. Click Next then click Done.
-7. On the left click on LUN. Edit the LUN, click on the Cache tab, and check the FUA/Sync box. Click Save.
+6: Click Next then click Done.
+7: On the left click on LUN. Edit the LUN, click on the Cache tab, and check the FUA/Sync box. Click Save.
+8: Run the script https://github.com/MorphyDK/pbs-postinstaller/blob/main/postinstall.sh
 
 MorphyDK
 
