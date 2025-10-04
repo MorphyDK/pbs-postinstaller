@@ -1,5 +1,5 @@
 #!/bin/bash
-# Safe PBS Post-Install Script with iSCSI Setup and GitHub Post-Installer
+# Safe PBS Post-Install Script with iSCSI Setup, GitHub Script, and Datastore Creation
 set -e
 
 GREEN="\e[32m"
@@ -88,7 +88,17 @@ chmod +x /tmp/iSCSI_mounting.sh
 echo ">>> GitHub iSCSI mounting script executed successfully!"
 NEED_REBOOT=1  # assume the script might require a reboot
 
-# --- Final reboot prompt at the end ---
+# --- Datastore creation ---
+echo -e "${GREEN}Now that your setup is done, you need to add the datastore to your Proxmox Backup Server.${RESET}"
+read -e -p "$(echo -e "${GREEN}Enter the name of the Datastore: ${RESET}")" DATASTORE_NAME
+read -e -p "$(echo -e "${GREEN}Enter the mount point for the Datastore which you entered ealier in the installation: ${RESET}")" DATASTORE_MOUNT
+
+echo ">>> Creating datastore '${DATASTORE_NAME}' at '${DATASTORE_MOUNT}'..."
+proxmox-backup-manager datastore create "$DATASTORE_NAME" "$DATASTORE_MOUNT"
+echo ">>> Datastore created successfully!"
+NEED_REBOOT=1
+
+# --- Final reboot prompt ---
 if [[ $NEED_REBOOT -eq 1 ]]; then
     read -e -p "$(echo -e "${GREEN}Reboot is required to apply all changes. Reboot now? (y/N): ${RESET}")" confirm_reboot
     if [[ "$confirm_reboot" =~ ^[Yy]$ ]]; then
