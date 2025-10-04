@@ -4,6 +4,7 @@
 # https://www.derekseaman.com/2025/08/how-to-synology-iscsi-lun-for-proxmox-backup-server-datastore.html
 # Version 1.0 10/4-2025
 # Author MorphyDK
+clear
 
 set -e
 
@@ -47,6 +48,8 @@ else
 fi
 
 # --- Optional upgrade ---
+clear
+
 read -e -p "$(echo -e "${GREEN}Do you want to auto-upgrade packages? (y/N): ${RESET}")" do_upgrade
 if [[ "$do_upgrade" =~ ^[Yy]$ ]]; then
     echo ">>> Upgrading packages..."
@@ -57,6 +60,8 @@ else
 fi
 
 # --- Optional iSCSI setup ---
+clear
+
 read -e -p "$(echo -e "${GREEN}Do you want to install and configure iSCSI? (y/N): ${RESET}")" do_iscsi
 if [[ "$do_iscsi" =~ ^[Yy]$ ]]; then
     echo ">>> Installing iSCSI packages..."
@@ -96,6 +101,8 @@ echo ">>> GitHub iSCSI mounting script executed successfully!"
 NEED_REBOOT=1  # assume the script might require a reboot
 
 # --- Datastore creation ---
+clear
+
 echo -e "${YELLOW}Now that your setup is done, you need to add the datastore to your Proxmox Backup Server.${RESET}"
 read -e -p "$(echo -e "${GREEN}Enter the name of the Datastore: ${RESET}")" DATASTORE_NAME
 read -e -p "$(echo -e "${RED}Enter the mount point for the Datastore which you entered ealier in the installation: ${RESET}")" DATASTORE_MOUNT
