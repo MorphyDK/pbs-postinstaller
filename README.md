@@ -20,12 +20,19 @@ Guide for iSCSI lun on the Synology server:
 Synology iSCSI LUN Creation
 
 1: Login to your Synology and open the SAN Manager application.
+
 2: On the left click on iSCSI, then "Add".
+
 3: Give the iSCSI target a description a name then click Next. 
+
 4: Click Next on Create a new LUN.
+
 5: Enter a LUN name, description, location, and size. Select Thin Provisioning, and check the Space reclamation box. 
+
 6: Click Next then click Done.
+
 7: On the left click on LUN. Edit the LUN, click on the Cache tab, and check the FUA/Sync box. Click Save.
+
 8: Run the script https://github.com/MorphyDK/pbs-postinstaller/blob/main/postinstall.sh
 
 MorphyDK
