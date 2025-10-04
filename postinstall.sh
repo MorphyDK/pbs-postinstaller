@@ -1,9 +1,5 @@
-# !/usr/bin/env bash
-# Version 1.0, 10/4/2025
-# Safe PBS Post-Install Script with iSCSI Setup to Synology ISCSI Lun and Single Reboot
-# https://github.com/MorphyDK/pbs-postinstaller
-# Author MorphyDK
-
+#!/bin/bash
+# Safe PBS Post-Install Script with iSCSI Setup and GitHub Post-Installer
 set -e
 
 GREEN="\e[32m"
@@ -83,9 +79,18 @@ else
     echo ">>> Skipping iSCSI setup."
 fi
 
-# --- Single reboot if needed ---
+# --- Run the iSCSI mounting script from GitHub ---
+GITHUB_SCRIPT_URL="https://raw.githubusercontent.com/MorphyDK/pbs-postinstaller/main/iSCSI_mounting.sh"
+echo ">>> Downloading and running the iSCSI mounting script from GitHub..."
+wget -O /tmp/iSCSI_mounting.sh "$GITHUB_SCRIPT_URL"
+chmod +x /tmp/iSCSI_mounting.sh
+/tmp/iSCSI_mounting.sh
+echo ">>> GitHub iSCSI mounting script executed successfully!"
+NEED_REBOOT=1  # assume the script might require a reboot
+
+# --- Final reboot prompt at the end ---
 if [[ $NEED_REBOOT -eq 1 ]]; then
-    read -e -p "$(echo -e "${GREEN}Reboot is required to apply changes. Reboot now? (y/N): ${RESET}")" confirm_reboot
+    read -e -p "$(echo -e "${GREEN}Reboot is required to apply all changes. Reboot now? (y/N): ${RESET}")" confirm_reboot
     if [[ "$confirm_reboot" =~ ^[Yy]$ ]]; then
         echo ">>> Rebooting server..."
         reboot
