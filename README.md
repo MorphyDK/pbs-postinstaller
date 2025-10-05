@@ -36,7 +36,7 @@ Synology iSCSI LUN Creation
 
 7: On the left click on LUN. Edit the LUN, click on the Cache tab, and check the FUA/Sync box. Click Save.
 
-8: Run the script https://github.com/MorphyDK/pbs-postinstaller/blob/main/postinstall.sh
+8: Download the script via git clone https://github.com/MorphyDK/pbs-postinstaller.git
 
 MorphyDK
 
