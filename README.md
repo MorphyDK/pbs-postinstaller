@@ -33,7 +33,7 @@ Synology iSCSI LUN Creation
 
 4: Click Next on Create a new LUN.
 
-5: Enter a LUN name, description, location, and size. Select Thin Provisioning, and check the Space reclamation box. 
+5: Enter a LUN name, description, location, and size. Select Thin Provisioning, and check the Space reclamation box. You will need the IQN number later in the installation, so keep your Synology open .
 
 6: Click Next then click Done.
 
