@@ -8,8 +8,11 @@ I wanted to make a script which made a complete setup for my Synology server, si
 So what it basically does: 
 
 1: Update your Proxmox Backup server
+
 2: Remove the enterprise repo and remove no subscription nag
+
 3: Install iSCSI via Dereks iSCSI_mount script
+
 4: Reboots the server and you are all good to go .
 
 I borrowed his scripts and want to try to build everything into a "One Installer to Rule them All" .. :P 
