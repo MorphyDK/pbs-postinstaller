@@ -17,11 +17,9 @@ So what it basically does:
 
 I borrowed his scripts and want to try to build everything into a "One Installer to Rule them All" .. :P 
 
-So all his hard work - a huge thanks for an alternative way to do backup to your Synology nas, instead of using NFS share to Proxmox Backup Server.
+So for all his hard work - a huge thanks for an alternative way to do backup to your Synology nas, instead of using NFS share to Proxmox Backup Server.
 
-My first "automated" script, so please bare with me. ( which probably can use some huge fine tunings :) )
-
-Guide for iSCSI lun on the Synology server: 
+##Guide for iSCSI lun on the Synology server: 
 
 Synology iSCSI LUN Creation
 
