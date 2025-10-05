@@ -39,7 +39,9 @@ Synology iSCSI LUN Creation
 
 7: On the left click on LUN. Edit the LUN, click on the Cache tab, and check the FUA/Sync box. Click Save.
 
-8: Download the script via git clone https://github.com/MorphyDK/pbs-postinstaller.git
+8: Go to your Proxmox Backup Server via shell , and run "apt install git -y" and download the script via "git clone https://github.com/MorphyDK/pbs-postinstaller.git"
+
+9: Goto the folder where it downloaded the script and chmod +x postinstall.sh and run it via ./postinstall.sh 
 
 MorphyDK
 
